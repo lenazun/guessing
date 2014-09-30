@@ -1,5 +1,7 @@
 from random import randint 
 
+bestScore = 100
+
 def safenumber(x):
     try:
         x = int(x)
@@ -9,6 +11,7 @@ def safenumber(x):
 
 
 def guessing():
+    global bestScore
     print("I'm thinking of a number between 1 and 100. Try to guess my number.")
 
     number = randint(1, 100)
@@ -34,8 +37,13 @@ def guessing():
             else:
                 game = False
                 print "Good job! You found my guess in %i tries." % guessCount
+                if bestScore > guessCount:
+                    print "That is a new record score!"
+                    bestScore = guessCount
         
 def main():
+    global bestScore 
+    bestScore = 100
     name = raw_input("Howdy, what's your name? > ")
     print("Hi %s!" % name)
 
