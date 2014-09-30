@@ -13,15 +13,17 @@ guessCount = 0
 while game:
     try:
         guess = int(raw_input("Your guess? > "))
-
-        guessCount += 1
-        if guess > number:
-            print("Your guess is too high, try again")
-        elif guess < number:
-            print("Your guess is too low, try again")
+        if guess < 1 or guess > 100:
+            print "That's out of range silly"
         else:
-            game = False
-            print "Good job! You found my guess in %i tries" % guessCount
+            guessCount += 1
+            if guess > number:
+                print("Your guess is too high, try again")
+            elif guess < number:
+                print("Your guess is too low, try again")
+            else:
+                game = False
+                print "Good job! You found my guess in %i tries" % guessCount
     except ValueError:
         print "Oops!  You didn't enter a valid number."
 
