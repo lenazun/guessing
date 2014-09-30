@@ -1,29 +1,47 @@
 from random import randint 
 
-name = raw_input("Howdy, what's your name? > ")
+def guessing():
+    print("I'm thinking of a number between 1 and 100. Try to guess my number.")
 
-print("Hi %s, I'm thinking of a number between 1 and 100. Try to guess my number." % name)
 
-number = randint(1, 100)
 
-game = True
+    number = randint(1, 100)
 
-guessCount = 0
+    game = True
 
-while game:
-    try:
-        guess = int(raw_input("Your guess? > "))
-        if guess < 1 or guess > 100:
-            print "That's out of range silly"
-        else:
-            guessCount += 1
-            if guess > number:
-                print("Your guess is too high, try again")
-            elif guess < number:
-                print("Your guess is too low, try again")
+    guessCount = 0
+
+    while game:
+        try:
+            guess = int(raw_input("Your guess? > "))
+            if guess < 1 or guess > 100:
+                print "That's out of range silly"
             else:
-                game = False
-                print "Good job! You found my guess in %i tries" % guessCount
-    except ValueError:
-        print "Oops!  You didn't enter a valid number."
+                guessCount += 1
+                if guess > number:
+                    print("Your guess is too high, try again")
+                elif guess < number:
+                    print("Your guess is too low, try again")
+                else:
+                    game = False
+                    print "Good job! You found my guess in %i tries." % guessCount
+        except ValueError:
+            print "Oops!  You didn't enter a valid number."
 
+def main():
+    name = raw_input("Howdy, what's your name? > ")
+    print("Hi %s!" % name)
+
+    guessing()
+
+    play_again = raw_input("Do you want to play again? Y or N >")
+    if play_again == "Y" or play_again == "y":
+        guessing()
+    elif play_again == "N" or play_again =="n":
+        print "OK, good bye"
+    else:
+        print "I don't understand"
+
+main()
+
+   
