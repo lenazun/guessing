@@ -5,7 +5,7 @@ def safenumber(x):
         x = int(x)
         return x
     except ValueError:
-        print "Ooops that's not a valid number"    
+        return "Error!"   
 
 
 def guessing():
@@ -20,7 +20,10 @@ def guessing():
     while game:
         
         guess = safenumber(raw_input("Your guess? > "))
-        if guess < 1 or guess > 100:
+
+        if guess == "Error!":
+            print "Oops that's not a valid entry."
+        elif guess < 1 or guess > 100:
             print "That's out of range silly"
         else:
             guessCount += 1
