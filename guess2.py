@@ -41,9 +41,14 @@ def main():
 
     guessing()
 
+
+
     play_again = raw_input("Do you want to play again? Y or N >")
+    
     if play_again == "Y" or play_again == "y":
-        guessing()
+        while play_again == "Y" or play_again == "y":
+            guessing()
+            play_again = raw_input("Do you want to play again? Y or N >")
     elif play_again == "N" or play_again =="n":
         print "OK, good bye"
     else:
