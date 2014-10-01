@@ -1,27 +1,30 @@
 from random import randint 
 
 def getScore():
+    """ Gets the best score stored in a text file """
     file = open('bestScore.txt', 'r')
     bestScore = file.read()
     file.close()
     return bestScore
 
 def setScore(newScore, name):
+    """ Writes the new best score and name to a file once the game is over """
     file = open('bestScore.txt', 'w')
     file.write(str(newScore) + " guesses, by ")
     file.write(name)
     file.close()
 
 def safenumber(x):
+    """Validates that the number entered is an integer"""
     try:
         x = int(x)
         return x
     except ValueError:
         return "Error!"   
 
-
 def guessing(name):
-    global bestScore
+    """Sets a random number and asks the user to guess, giving feedback"""
+    
     print("I'm thinking of a number between 1 and 100. Try to guess my number.")
 
     number = randint(1, 100)
@@ -54,6 +57,7 @@ def guessing(name):
         
 
 def main():
+    """Greets the user, gets the name, once it runs the game asks if user wants to play again"""
 
     print "The current record is: " + getScore()
 
@@ -61,7 +65,6 @@ def main():
     print("Hi %s!" % name)
 
     guessing(name)
-
 
     play_again = raw_input("Do you want to play again? Y or N >")
     
