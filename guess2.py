@@ -2,13 +2,14 @@ from random import randint
 
 def getScore():
     file = open('bestScore.txt', 'r')
-    bestScore = file.read(2)
+    bestScore = file.read()
     file.close()
     return bestScore
 
-def setScore(newScore):
+def setScore(newScore, name):
     file = open('bestScore.txt', 'w')
-    file.write(str(newScore))
+    file.write(str(newScore) + " guesses, by ")
+    file.write(name)
     file.close()
 
 def safenumber(x):
@@ -19,11 +20,12 @@ def safenumber(x):
         return "Error!"   
 
 
-def guessing():
+def guessing(name):
     global bestScore
     print("I'm thinking of a number between 1 and 100. Try to guess my number.")
 
     number = randint(1, 100)
+    #print number
 
     game = True
 
@@ -48,7 +50,7 @@ def guessing():
                 print "Good job! You found my guess in %i tries." % guessCount
                 if getScore() > guessCount:
                     print "That is a new record score!"
-                    setScore(guessCount) 
+                    setScore(guessCount, name) 
         
 
 def main():
@@ -58,14 +60,14 @@ def main():
     name = raw_input("Howdy, what's your name? > ")
     print("Hi %s!" % name)
 
-    guessing()
+    guessing(name)
 
 
     play_again = raw_input("Do you want to play again? Y or N >")
     
     if play_again == "Y" or play_again == "y":
         while play_again == "Y" or play_again == "y":
-            guessing()
+            guessing(name)
             play_again = raw_input("Do you want to play again? Y or N >")
     elif play_again == "N" or play_again =="n":
         print "OK, good bye"
