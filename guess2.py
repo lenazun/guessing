@@ -1,6 +1,15 @@
 from random import randint 
 
-bestScore = 100
+def getScore():
+    file = open('bestScore.txt', 'r')
+    bestScore = file.read(2)
+    file.close()
+    return bestScore
+
+def setScore(newScore):
+    file = open('bestScore.txt', 'w')
+    file.write(str(newScore))
+    file.close()
 
 def safenumber(x):
     try:
@@ -37,18 +46,19 @@ def guessing():
             else:
                 game = False
                 print "Good job! You found my guess in %i tries." % guessCount
-                if bestScore > guessCount:
+                if getScore() > guessCount:
                     print "That is a new record score!"
-                    bestScore = guessCount
+                    setScore(guessCount) 
         
+
 def main():
-    global bestScore 
-    bestScore = 100
+
+    print "The current record is: " + getScore()
+
     name = raw_input("Howdy, what's your name? > ")
     print("Hi %s!" % name)
 
     guessing()
-
 
 
     play_again = raw_input("Do you want to play again? Y or N >")
@@ -62,13 +72,6 @@ def main():
     else:
         print "I don't understand"
 
+
 main()
 
-  
-# g = ri() 
-# try:
-#   x = int(g)
-# except ValueError:
-#   kjkllkjlkj
-
-# hfghgfhgfhfg
