@@ -36,7 +36,7 @@ def guessing(name):
     print("I'm thinking of a number between 1 and 100. Try to guess my number.")
 
     number = randint(1, 100)
-    print number
+    #print number
 
     game = True
 
