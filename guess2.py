@@ -10,8 +10,7 @@ def getScore():
 def setScore(newScore, name):
     """ Writes the new best score and name to a file once the game is over """
     file = open('bestScore.txt', 'w')
-    file.write(str(newScore) + " guesses, by ")
-    file.write(name)
+    file.write(str(newScore) + " guesses, by " + (name))
     file.close()
 
 def safenumber(x):
@@ -22,13 +21,22 @@ def safenumber(x):
     except ValueError:
         return "Error!"   
 
+def highScore(guessCount, name):
+
+    oldScore = getScore()
+    data = oldScore.split(" ")
+
+    if int(guessCount) < int(data[0]):
+        print "That is a new record score!"
+        setScore(guessCount, name) 
+
 def guessing(name):
     """Sets a random number and asks the user to guess, giving feedback"""
     
     print("I'm thinking of a number between 1 and 100. Try to guess my number.")
 
     number = randint(1, 100)
-    #print number
+    print number
 
     game = True
 
@@ -51,10 +59,9 @@ def guessing(name):
             else:
                 game = False
                 print "Good job! You found my guess in %i tries." % guessCount
-                if getScore() > guessCount:
-                    print "That is a new record score!"
-                    setScore(guessCount, name) 
-        
+                highScore(guessCount, name)
+
+
 
 def main():
     """Greets the user, gets the name, once it runs the game asks if user wants to play again"""
